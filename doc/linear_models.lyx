@@ -1,0 +1,350 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{hyperref}
+\end_preamble
+\options nofootinbib
+\use_default_options true
+\begin_modules
+theorems-ams
+theorems-ams-extended
+\end_modules
+\maintain_unincluded_children false
+\language british
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\paperwidth 128mm
+\paperheight 96mm
+\leftmargin 1.9cm
+\topmargin 1.9cm
+\rightmargin 1.9cm
+\bottommargin 1.9cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style british
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Implementação e Avaliação de Modelos de Regressão Linear e Florestas Aleatórias
+ Aplicados à Previsão de Séries Temporais 
+\end_layout
+
+\begin_layout Author
+Igor Mol
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+\size small
+igor.mol@makes.ai
+\end_layout
+
+\begin_layout Standard
+O arquivo 
+\family typewriter
+\size small
+\color magenta
+sliding_window_v2.py
+\family default
+\size default
+\color inherit
+ apresenta o código que define e treina um modelo de regressão linear utilizando
+ a abordagem de janela deslizante para prever séries temporais.
+ Inicialmente, as variáveis de tempo e quantidade são extraídas dos dados
+ de treinamento e transformadas em vetores unidimensionais.
+ Uma função que implementa a abordagem de janela deslizante é definida,
+ treinando o modelo de regressão em cada janela de dados e efetuando previsões
+ para o horizonte subsequente.
+ Esse processo é repetido continuamente, deslocando a janela de treinamento
+ ao longo do conjunto de dados.
+ Em conclusão, o código exibe dois gráficos: um que compara as previsões
+ do modelo com a série temporal original e outro que demonstra a tendência
+ do erro quadrático médio em diferentes janelas.
+\end_layout
+
+\begin_layout Standard
+O script 
+\family typewriter
+\size small
+\color magenta
+random_forests.py
+\family default
+\size default
+\color inherit
+ emprega a técnica de Floresta Aleatória para prever séries temporais.
+ Primeiramente, os dados são preparados para a previsão por meio da criação
+ de grupos contíguos, denominados `janelas', e gera vetores de características
+ e alvos.
+ Em seguida, realiza-se uma validação cruzada para dividir a série em conjuntos
+ de treinamento e teste, respeitando a ordem temporal dos dados.
+ A Floresta Aleatória é então iniciada, treinando o modelo e fazendo previsões.
+ Os valores previstos e os dados originais, juntamente com o erro quadrático
+ médio de cada previsão, são armazenados.
+ Um gráfico dos resultados é traçado ao final.
+\end_layout
+
+\begin_layout Standard
+O arquivo 
+\family typewriter
+\size small
+\color magenta
+out_of_sample_unit_of_time.py
+\family default
+\size default
+\color inherit
+ implementa a função 
+\family typewriter
+\size small
+\color magenta
+optimal_time_unit
+\family default
+\size default
+\color inherit
+ com o objetivo de encontrar a melhor unidade de tempo para o modelo de
+ série temporal.
+ A função começa com 
+\family typewriter
+\size small
+errors
+\family default
+\size default
+, uma lista que armazenará os erros quadrados médios, verifica se a unidade
+ de tempo é menor que o total de pontos na série e aplica uma janela deslizante
+ para calcular a média dos pontos de dados.
+ Os conjuntos 
+\begin_inset Formula $X$
+\end_inset
+
+ e 
+\begin_inset Formula $Y$
+\end_inset
+
+ são divididos em rotinas de treinamento e testes, um modelo de regressão
+ linear é ajustado, utilizado para fazer previsões e calcular o erro quadrado
+ médio.
+ O erro para cada unidade de tempo é armazenado e, no final, a função retorna
+ a unidade de tempo com o menor erro.
+ Um gráfico é gerado para a observação do erro versus o tamanho da janela,
+ e a função é invocada considerando unidades de tempo 
+\begin_inset Formula $t$
+\end_inset
+
+ entre 
+\begin_inset Formula $1<t<60.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O script 
+\family typewriter
+\size small
+\color magenta
+out_of_sample_optimal_horizon.py
+\family default
+\size default
+\color inherit
+ é utilizado para analisar uma série temporal, encontrar o horizonte de
+ previsão ideal e visualizar os resultados.
+ O primeiro bloco de código define duas funções, 
+\family typewriter
+\size small
+\color magenta
+linear_regression_model
+\family default
+\size default
+\color inherit
+, que treina um modelo de regressão linear a partir de um dataframe, e 
+\family typewriter
+\size small
+\color magenta
+find_optimal_horizon
+\family default
+\size default
+\color inherit
+, que itera sobre diferentes horizontes de previsão para encontrar aquele
+ que produz o menor erro quadrático médio.
+ Uma terceira função, 
+\family typewriter
+\size small
+\color magenta
+plot_model_performance
+\family default
+\size default
+\color inherit
+, é então usada para traçar o erro de previsão versus o horizonte de previsão.
+ A última parte do código aplica essas funções aos dados de treinamento,
+ imprime o horizonte ideal e exibe os resultados.
+\end_layout
+
+\begin_layout Standard
+Já o código–fonte 
+\family typewriter
+\size small
+\color magenta
+optimal_unit_of_time.py
+\family default
+\size default
+\color inherit
+ realiza uma análise de série temporal com o objetivo de encontrar a unidade
+ de tempo ótima para agrupar os dados e treinar um modelo de regressão linear.
+ Os dados são primeiramente ordenados cronologicamente.
+ Uma função é então definida que agrupa os dados em unidades de tempo especifica
+das, treina um modelo de regressão linear, faz previsões e calcula o erro
+ quadrático médio (MSE).
+ Um intervalo de unidades de tempo é definido para testar o desempenho do
+ modelo e os resultados são plotados em um gráfico.
+ A função retorna a unidade de tempo que resulta no menor MSE.
+ 
+\end_layout
+
+\begin_layout Standard
+O código–fonte 
+\family typewriter
+\size small
+\color magenta
+ARIMA.py
+\family default
+\size default
+\color inherit
+ apresenta uma implementação do modelo ARIMA para modelar uma série temporal,
+ onde as funções para executar o modelo, plotar o gráfico e fazer previsões
+ estão definidas.
+ O modelo ARIMA é executado nos dados de treinamento e depois usado para
+ prever os próximos 50 passos da série temporal.
+ O resultado então é representado graficamente, mostrando tanto os dados
+ originais como o modelo ajustado e as previsões para futuros passos.
+\end_layout
+
+\begin_layout Standard
+No arquivo 
+\family typewriter
+\size small
+\color magenta
+ARIMA_sliding_window.py
+\family default
+\size default
+\color inherit
+, reformulamos o método ARIMA implementado no código–fonte descrito no parágrafo
+ acima segundo um modelo de janelas–deslizantes.
+ O código inicializa duas listas: 
+\family typewriter
+\size small
+\color magenta
+history
+\family default
+\size default
+\color inherit
+, que armazena os primeiros elementos da série temporal como determinado
+ pelo tamanho da janela, e 
+\family typewriter
+\size small
+\color magenta
+predictions
+\family default
+\size default
+\color inherit
+, que armazena as previsões futuras.
+ Em seguida, iteramos sobre o restante da série temporal, construindo e
+ ajustando um modelo ARIMA por meio da lista 
+\family typewriter
+\size small
+\color magenta
+history
+\family default
+\size default
+\color inherit
+, e fazemos uma previsão 
+\begin_inset Formula $n$
+\end_inset
+
+–passos adiante, onde 
+\begin_inset Formula $n\coloneqq$
+\end_inset
+
+ 
+\family typewriter
+\size small
+\color magenta
+horizonte
+\family default
+\size default
+\color inherit
+.
+ Por fim, adicionamos os dados reais após todas as previsões terem sido
+ feitas, calculamos o erro quadrático médio entre os dados reais e as previsões,
+ imprimimos o resultado, e então confrontamos os dados reais e as previsões
+ através de um gráfico.
+\end_layout
+
+\end_body
+\end_document

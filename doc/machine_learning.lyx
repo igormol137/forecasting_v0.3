@@ -1,0 +1,461 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{hyperref}
+\end_preamble
+\options nofootinbib
+\use_default_options true
+\begin_modules
+theorems-ams
+theorems-ams-extended
+\end_modules
+\maintain_unincluded_children false
+\language british
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\paperwidth 128mm
+\paperheight 96mm
+\leftmargin 1.9cm
+\topmargin 1.9cm
+\rightmargin 1.9cm
+\bottommargin 1.9cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style british
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Implementação e Avaliação de Redes Neurais Recorrentes com Uso de Técnicas
+ de Espaço de Fase e Embedding na Modelagem de Séries Temporais
+\end_layout
+
+\begin_layout Author
+Igor Mol
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+\size small
+\color magenta
+igor.mol@makes.ai
+\end_layout
+
+\begin_layout Section
+Long Short-Term Memory
+\end_layout
+
+\begin_layout Standard
+O código–fonte contido no arquivo 
+\family typewriter
+\size small
+\color magenta
+LSTM.py
+\family default
+\size default
+\color inherit
+ materializa a implementação de um modelo de redes neurais Long Short-Term
+ Memory (LSTM) designado para a modelagem de séries temporais.
+ A primeira etapa engloba os procedimentos de pré-processamento dos dados,
+ que abarcam a normalização e a subsequente constituição dos conjuntos destinado
+s ao treinamento e teste.
+ Conduz-se então o aprendizado do modelo, a geração de previsões e, por
+ fim, a elaboração de um gráfico capaz de demonstrar o confronto visual
+ entre o modelo e os dados originais.
+\end_layout
+
+\begin_layout Section
+Redes Neurais Recorrentes
+\end_layout
+
+\begin_layout Standard
+O arquivo denominado 
+\family typewriter
+\size small
+\color magenta
+recurrent_neural_networks.py
+\family default
+\size default
+\color inherit
+ implementa uma abordagem de redes neurais aplicadas à modelagem de uma
+ série temporal por meio de 
+\emph on
+embedding
+\emph default
+, utilizando o modelo Recurrent Neural Networks (RNN).
+ Inicialmente, os dados são normalizados e preparados para o treinamento.
+ Posteriormente, cria-se e treina-se a rede neural RNN, realizam-se previsões
+ e calcula-se o erro quadrático médio.
+ Finalmente, apresentam-se os resultados, confrontando as previsões do modelo
+ com os dados originais e ilustrando a tendência do erro ao longo do tempo.
+\end_layout
+
+\begin_layout Section
+Método de Espaço de Fase
+\end_layout
+
+\begin_layout Standard
+O programa denominado 
+\family typewriter
+\size small
+\color magenta
+state_space.py
+\family default
+\size default
+\color inherit
+ põe em prática a modelagem de uma série temporal utilizando um método de
+ espaço de fase, efetuando a divisão dos dados em conjuntos de treinamento
+ e teste, ajustando o modelo com base nos dados de treino e produzindo previsões
+ para os dados de teste.
+ Para cada tamanho de conjunto de teste distinto, calcula-se e ilustra-se
+ o erro quadrático médio entre as previsões e os respectivos dados de teste.
+ Os dados originais, as previsões realizadas e o erro quadrático médio são
+ todos representados em um gráfico.
+\end_layout
+
+\begin_layout Section
+Aprendizagem Supervisionada e 
+\emph on
+Embedding
+\emph default
+ de Takes
+\end_layout
+
+\begin_layout Standard
+O código–fonte entitulado 
+\family typewriter
+\size small
+\color magenta
+takens.py
+\family default
+\size default
+\color inherit
+ implementa a técnica de embedding de Takens com a finalidade de modelar
+ uma série temporal.
+ O método cria uma série ``atrasada'' com um número específico de dimensões,
+ a ser determinada 
+\emph on
+a priori
+\emph default
+, cujas especificidades podem ser ajustadas de acordo com a natureza e a
+ magnitude dos dados que descrevem a série temporal.
+ Posteriormente, calcula-se o erro quadrático médio entre as previsões feitas
+ por um modelo 
+\emph on
+
+\begin_inset Formula $k$
+\end_inset
+
+–nearest neighbors
+\emph default
+ (KNN), que é treinado para modelar a série temporal.
+\end_layout
+
+\begin_layout Section
+Auto-Regressive Integrated Moving Average
+\end_layout
+
+\begin_layout Standard
+O arquivo 
+\family typewriter
+\size small
+\color magenta
+ARIMA.py
+\family default
+\size default
+\color inherit
+ contém a implementação do método ``Auto-Regressive Integrated Moving Average''
+ (ARIMA) com o propósito de modelar séries temporais.
+ A versão particular do modelo ARIMA que usamos é utilizada para processar
+ os dados de treinamento, prognosticando assim os 
+\begin_inset Formula $n$
+\end_inset
+
+–passos subsequentes da série temporal estabelecida, onde 
+\begin_inset Formula $n\coloneqq50$
+\end_inset
+
+ por padão.
+ Notemos que este valor pode ser alterado de acordo com a necessidade imposta
+ pelos dados que constitutem a série temporal a ser analisada.
+ O resultado, por fim, é impresso em um diagrama, o qual exibe tanto os
+ dados iniciais quanto o modelo devidamente ajustado, juntamente com as
+ previsões referentes aos passos futuros.
+\end_layout
+
+\begin_layout Standard
+O código-fonte 
+\family typewriter
+\size small
+\color magenta
+ARIMA_sliding_window.py
+\family default
+\size default
+\color inherit
+ implementa o método ARIMA seguindo uma abordagem de janelas deslizantes.
+ Duas listas são iniciadas pelo código: 
+\family typewriter
+\size small
+\color magenta
+history
+\family default
+\size default
+\color inherit
+, que contém os primeiros elementos da série temporal determinados pelo
+ tamanho da janela estabelecida, e 
+\family typewriter
+\size small
+\color magenta
+predictions
+\family default
+\size default
+\color inherit
+, que armazena as previsões para etapas futuras.
+ Posteriormente, itera-se ao longo da série temporal, construindo e ajustandoum
+ modelo ARIMA com base na lista 
+\family typewriter
+\size small
+\color magenta
+history
+\family default
+\size default
+\color inherit
+, além de realizar uma previsão em 
+\begin_inset Formula $n$
+\end_inset
+
+–passos, onde 
+\begin_inset Formula $n$
+\end_inset
+
+ se refere ao 
+\family typewriter
+\size small
+\color magenta
+horizonte
+\family default
+\size default
+\color inherit
+.
+ Em conclusão, acrescentamos os dados reais após todas as previsões terem
+ sido realizadas, e calculamos o erro quadrático médio, e encerramos a execução
+ com uma comparação entre os dados reais e predições mediante a representação
+ gráfica.
+\end_layout
+
+\begin_layout Section
+Redes Neurais Convolucionais
+\end_layout
+
+\begin_layout Standard
+O programa cujo código-fonte está contido no script 
+\family typewriter
+\size small
+\color magenta
+cnn.py
+\family default
+\size default
+\color inherit
+ cria um modelo de aprendizado de máquina para prever séries temporais usando
+ Redes Neurais Convolucionais (CNN).
+ Primeiramente, define-se a janela de dados e o horizonte de previsão, e
+ transforma os dados em uma 
+\emph on
+sequência
+\emph default
+ de janelas.
+ A parte central do código é a construção e o treinamento do modelo CNN,
+ usando a biblioteca Keras.
+ Posteriormente ao treinamento, o modelo é usado para fazer previsões nos
+ dados de treinamento.
+ Adicionalmente, o código faz uma análise visual dos resultados, comparando
+ a previsão com os dados originais em um gráfico.
+ Ao final, o Erro Quadrático Médio (MSE), uma métrica de avaliação de desempenho
+ do modelo, também é calculado e apresentado graficamente.
+\end_layout
+
+\begin_layout Section
+Redes Neurais Híbridas: CNN/LSTM
+\end_layout
+
+\begin_layout Standard
+O código-fonte 
+\family typewriter
+\size small
+\color magenta
+cnn_lstm.py
+\family default
+\size default
+\color inherit
+ implementa uma abordagem híbrida para modelagem de séries temporais, utilizando
+ redes neurais convolucionais (CNN) e o método ``Long Short-Term Memory''
+ (LSTM).
+ Primeiro, o conjunto de dados é escalonado e reformatado com a função 
+\family typewriter
+\size small
+\color magenta
+create_dataset
+\family default
+\size default
+\color inherit
+ para ser compatível com o modelo LSTM.
+ Em seguida, um modelo de rede neural sequencial contendo uma camada convolucion
+al, uma camada LSTM e uma camada de saída é criado utilizando a função 
+\family typewriter
+\size small
+\color magenta
+create_model
+\family default
+\size default
+\color inherit
+.
+ Este modelo é treinado ao longo de 30 épocas com dados de treino e validação.
+ Após o treinamento, o modelo é usado para prever os valores desejados para
+ os conjuntos de treinamento e validação.
+ As perdas durante o treinamento e as previsões são visualizadas utilizando
+ as funções 
+\family typewriter
+\size small
+\color magenta
+plot_history
+\family default
+\size default
+\color inherit
+ e 
+\family typewriter
+\size small
+\color magenta
+plot_prediction
+\family default
+\size default
+\color inherit
+.
+\end_layout
+
+\begin_layout Section
+Redes Neurais Híbridas: CNN/RNN
+\end_layout
+
+\begin_layout Standard
+O arquivo 
+\family typewriter
+\size small
+\color magenta
+cnn_rnn.py
+\family default
+\size default
+\color inherit
+ contém uma implementação de um modelo híbrido de Convolutional Neural Network
+ (CNN) e Recurrent Neural Network (RNN) para analisar séries temporais.
+ Primeiro, os dados são pré-processados, e são criados objetos chamados
+ de ``lags'' (desfasagens temporais) dos dados da série temporal.
+ Posteriormente, esses dados são divididos em sequências de entrada/saída
+ usando a função 
+\family typewriter
+\size small
+\color magenta
+split_sequences
+\family default
+\size default
+\color inherit
+.
+ Em seguida, um modelo híbrido de CNN/LSTM é criado com a função 
+\family typewriter
+\size small
+\color magenta
+create_model
+\family default
+\size default
+\color inherit
+, que é treinado usando as sequências de entrada/saída.
+ O modelo é avaliado e suas previsões comparadas aos dados reais, que são
+ visualizados utilizando as funções 
+\family typewriter
+\size small
+\color magenta
+plot_prediction
+\family default
+\size default
+\color inherit
+ e 
+\family typewriter
+\size small
+\color magenta
+plot_error
+\family default
+\size default
+\color inherit
+.
+ Isso permite ver a precisão das previsões do modelo e o erro quadrático
+ médio ao longo do treinamento.
+\end_layout
+
+\end_body
+\end_document
